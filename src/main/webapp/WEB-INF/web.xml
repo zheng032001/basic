@@ -16,9 +16,18 @@
        <filter-name>encoding-filter</filter-name>
        <servlet-name>spring-mvc</servlet-name>
    </filter-mapping> 
-    
+
+      <!-- 启动spring容器 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-context.xml</param-value>
+    </context-param>
+
+    <!-- SpringMVC的前端控制器 -->
   <servlet>
-      <description>SpringMVC的前端控制器</description>
     <servlet-name>spring-mvc</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
