@@ -10,14 +10,14 @@
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 重定向时是否添加上下文路径 -->
-        <property name="redirectContextRelative" value="true"></property>
+        <property name="redirectContextRelative" value="true"/>
         <!-- 前缀 -->
-        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="prefix" value="/WEB-INF/views/"/>
         <!-- 后缀 -->
-        <property name="suffix" value=".html"></property>
+        <property name="suffix" value=".html"/>
     </bean>
 
     <!-- 扫描所有控制器 -->
-    <context:component-scan base-package="cn.com.orange.basic.web.handler"></context:component-scan>
+    <context:component-scan base-package="cn.com.orange.basic.web.handler"/>
 
 </beans>

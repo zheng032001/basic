@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 扫描业务层组件 -->
-    <context:component-scan base-package="cn.com.orange.basic.function"></context:component-scan>
-    
+    <context:component-scan base-package="cn.com.orange.basic.function"/>
+
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/basic" />
+        <property name="user" value="orange"/>
+        <property name="password" value="orange"/>
+        <property name="minPoolSize" value="1"/>
+        <property name="maxPoolSize" value="3"/>
+        <!-- 初始化连接数 -->
+        <property name="initialPoolSize" value="1"/>
+        <!-- 连接数不够时，自动增长 -->
+        <property name="acquireIncrement" value="1"/>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 注解控制事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 </beans>
