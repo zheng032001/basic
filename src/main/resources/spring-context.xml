@@ -29,4 +29,20 @@
     <!-- 注解控制事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mapper/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 扫描生成所有的dao层对象 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.com.orange.basic.dao"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionFactory"/>
+    </bean>
+
 </beans>
