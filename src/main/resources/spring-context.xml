@@ -42,7 +42,7 @@
     <!-- 扫描生成所有的dao层对象 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="cn.com.orange.basic.dao"/>
-        <property name="sqlSessionTemplateBeanName" value="sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
 </beans>
